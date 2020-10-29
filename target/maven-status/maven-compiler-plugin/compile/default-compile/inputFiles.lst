@@ -1,0 +1,10 @@
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/service/EventManagementService.java
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/aspect/EventLoggerAspect.java
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/repository/EventRepository.java
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/model/Log.java
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/utils/Constants.java
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/model/Event.java
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/Application.java
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/service/impl/LogManagementServiceImpl.java
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/service/impl/EventManagementServiceImpl.java
+/home/sujit/eclipse-workspace/CreditSuisseLogger/src/main/java/com/sujit/creditsuisse/service/LogManagementService.java
