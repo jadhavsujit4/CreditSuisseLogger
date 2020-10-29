@@ -1,6 +1,5 @@
 package com.sujit.creditsuisse;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,60 +8,56 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.sujit.creditsuisse.model.Event;
-import com.sujit.creditsuisse.model.Log;
-import com.sujit.creditsuisse.service.EventManagementService;
-import com.sujit.creditsuisse.service.LogManagementService;
+import com.sujit.creditsuisse.service.LogEventManagementService;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @SpringBootApplication(scanBasePackages = "com.sujit.creditsuisse")
 public class Application implements CommandLineRunner {
 
-	@Autowired
-	private final LogManagementService logManagementService;
+	static Logger logger = LogManager.getLogger(Application.class);
 
 	@Autowired
-	private final EventManagementService eventManagementService;
+	private final LogEventManagementService logEventManagementService;
 
-	public Application(LogManagementService logManagementService, EventManagementService eventManagementService) {
-		this.logManagementService = logManagementService;
-		this.eventManagementService = eventManagementService;
+	public Application(LogEventManagementService logEventManagementService) {
+		this.logEventManagementService = logEventManagementService;
 	}
 
 	public static void main(String[] args) {
-
 		try {
 			SpringApplication app = new SpringApplication(Application.class);
+
+			// If no argument is passed, do not run the application
 			if (args != null && args.length > 0) {
 				app.run(args);
-			}
-			else {
-				System.out.println("Please specify Logfile path");
+			} else {
+				throw new Exception("Please specify Logfile path");
 			}
 
 		} catch (Exception e) {
-			System.out.println("Exception occured in main: " + e);
+			logger.error(e.getMessage());
 		}
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		try {
-			List<Log> logEvents = logManagementService.readFromFile(args[0]);
+			// Reading from file to get logs and convert those logs to events
+			logger.info("Reading from file and processing to create events");
+			Set<Event> eventSet = logEventManagementService.readFromFileAndprocessLogEvents(args[0]);
 
-			if (logEvents.size() > 0) {
-				Set<Event> eventSet = eventManagementService.processLogEvents(logEvents);
-				/*
-				 * Event events = null; for (Event event : eventSet) { events = event; }
-				 * eventManagementService.saveEventInDB(events);
-				 */
-				eventManagementService.saveAllEventsInDB(eventSet);
+			// Saving the created events in database
+			logger.info("Saving events to HSQLDB");
+			logEventManagementService.saveAllEventsInDB(eventSet);
 
-				eventManagementService.getAllEventsFromDB().stream().forEach(System.out::println);
-			} else {
-				System.out.println("No Logs to process");
-			}
+			// Reading the saved events from database
+			logger.info("Getting saved events from HSQLDB");
+			logEventManagementService.getAllEventsFromDB().stream().forEach(x -> logger.debug(x));
 
 		} catch (Exception e) {
-			System.out.println("Exception occured : " + e);
+			logger.error("Exception occured in run: " + e);
 		}
 
 	}

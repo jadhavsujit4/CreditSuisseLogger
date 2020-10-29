@@ -1,9 +1,9 @@
 /*C12*/SET SCHEMA PUBLIC
 drop table event if exists
 create table event (id varchar(255) not null, alert boolean, duration bigint, host varchar(255), type varchar(255), primary key (id))
-INSERT INTO EVENT VALUES('scsmbstgrc',TRUE,8,NULL,NULL)
-INSERT INTO EVENT VALUES('scsmbstgrb',FALSE,3,NULL,NULL)
 INSERT INTO EVENT VALUES('scsmbstgra',TRUE,5,'12345','APPLICATION_LOG')
+INSERT INTO EVENT VALUES('scsmbstgrb',FALSE,3,NULL,NULL)
+INSERT INTO EVENT VALUES('scsmbstgrc',TRUE,8,NULL,NULL)
 COMMIT
 DISCONNECT
 /*C13*/SET SCHEMA PUBLIC

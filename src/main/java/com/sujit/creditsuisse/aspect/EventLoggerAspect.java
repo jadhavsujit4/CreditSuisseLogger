@@ -12,7 +12,14 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
+/**
+ * 
+ * @author sujit
+ *
+ * @description Class for creating advices for classes and methods. This class is used for logging around the method calls.
+ *
+ * @params
+ */
 @Aspect
 @Component
 public class EventLoggerAspect {

@@ -1,7 +1,12 @@
 package com.sujit.creditsuisse.model;
 
 import org.springframework.beans.factory.annotation.Required;
-
+/**
+ * 
+ * @author sujit
+ *
+ * @description Class for Log
+ */
 public class Log {
 
 	private String id;

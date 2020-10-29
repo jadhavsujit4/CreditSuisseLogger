@@ -5,7 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import com.sujit.creditsuisse.utils.Constants;
-
+/**
+ * 
+ * @author sujit
+ *
+ * @description Class for Event
+ */
 @Entity
 public class Event {
 
@@ -27,6 +32,7 @@ public class Event {
 	public Event() {
 	}
 
+	// This constructor is used to set the alert value based on the duration of an event
 	public Event(Log log, long duration) {
 		this.id = log.getId();
 		this.duration = duration;

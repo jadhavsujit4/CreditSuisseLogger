@@ -1,10 +1,8 @@
 package com.sujit.creditsuisse.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
